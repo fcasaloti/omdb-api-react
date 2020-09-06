@@ -1,13 +1,62 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body{
+    background-color: rgba(229, 234, 238, 0.952);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.mainBoard {
+    font: normal 12px 'Arial';
+    margin-left: auto;
+    margin-top: 10px;
+    margin-right: auto;
+    width: 80%;
+    height: 80%;
+    padding: 10px;
+    background-color: rgba(229, 234, 238, 0.952);
 }
+
+.head{
+    font: bold 18px 'Arial';
+    margin:20px;
+}
+
+.search{
+    margin:10px;
+    padding: 10px;
+    background-color: white;
+}
+
+.searchBox{
+    margin: 10px;
+    width: 95%;
+    background-color: white;
+}
+
+.resultBody{
+    margin: 10px;
+    height: 250px;
+}
+
+.results{
+    float: left;
+    padding: 10px;
+    height: 100%;
+    width: 40%;
+    background-color: white;
+}
+
+.nominations{
+    float: right;
+    padding: 10px;
+    height: 50%;
+    width: 40%;
+    background-color: white;
+} 
+
+.button{
+    background-color: #C0C0C0;
+    border:none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+  }
