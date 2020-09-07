@@ -34,9 +34,11 @@ export default class Main extends React.Component{
         const temp = localStorage.getItem('nominations');
         const nominations = JSON.parse(temp)
 
-        this.setState({
-            nominations: nominations,
-        })
+        if (nominations !== null){
+            this.setState({
+                nominations: nominations,
+            })
+        }
     }
 
     //setState from data of textbox
@@ -136,6 +138,7 @@ export default class Main extends React.Component{
            movies: movies,
            nominations: delNomination })
     }
+
 
     //Rendering
      render(){
