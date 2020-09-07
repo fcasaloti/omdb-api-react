@@ -121,13 +121,14 @@ export default class Main extends React.Component{
                 movies[i].nominate = false
         }
        
+        localStorage.setItem('nominations',JSON.stringify(delNomination));
 
         this.setState({
            movies: movies,
            nominations: delNomination })
     }
 
-    render(){
+     render(){
 
         const movies = this.state.movies.slice();
 
