@@ -23,6 +23,19 @@ export default class Main extends React.Component{
 
     }
 
+    componentDidMount(){
+        this.loadLocalData();
+    }
+
+    loadLocalData(){
+        const temp = localStorage.getItem('nominations');
+        const nominations = JSON.parse(temp)
+
+        this.setState({
+            nominations: nominations,
+        })
+    }
+
     handleChange(event) {
         this.setState({
             movie: event.target.value
@@ -91,6 +104,7 @@ export default class Main extends React.Component{
         if(nominations.length === 6)
             alert('Maximum nominations is 5')
 
+        localStorage.setItem('nominations',JSON.stringify(nominations));
     }
 
     handleDelete(index){
