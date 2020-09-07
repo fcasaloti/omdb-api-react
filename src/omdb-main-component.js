@@ -4,16 +4,16 @@ import Results from './omdb-results-component';
 import Nominations from './omdb-nominations-component';
 import axios from 'axios';
 
-
 export default class Main extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             movie: '',
             movies: [],
-            nominations:[{
+            nominations: [{
                 title: "",
                 year: "",
+                imdbID: "",
             }]
         }
 
@@ -23,16 +23,27 @@ export default class Main extends React.Component{
 
     }
 
+    componentDidMount(){
+        this.getStorageData()
+    }
+
+    getStorageData(){
+
+
+    }
+
+ 
+
     handleChange(event) {
         this.setState({
             movie: event.target.value
         });
-      }
+    }
     
-      handleSubmit(event) {
+    handleSubmit(event) {
         this.getData();
         event.preventDefault();
-      }
+    }
 
     getData(){
 
@@ -40,7 +51,7 @@ export default class Main extends React.Component{
 
         axios.get(url + this.state.movie)
             .then(response => {
-                console.log(response.data);  //debug
+                //console.log(response.data);  //debug
                 this.newState(response.data.Search);
             })
             .catch((error) => {
@@ -49,39 +60,77 @@ export default class Main extends React.Component{
     }
 
     newState(movies){
+
+        const movieList = movies.map(movie => {
+            return(
+            {
+                title: movie.Title,
+                year: movie.Year,
+                imdbID: movie.imdbID,
+                nominate: false,
+            }
+            )
+        })
+
+        console.log(movieList[0])
+
         this.setState({
-            movies: movies.slice()
+            movies: movieList.slice(1),
         })
     }
 
-    handleClick(i){
-        const nominations = this.state.nominations.slice();
+    handleAdd(i){
+        let nominations = this.state.nominations.slice();
+        let movies = this.state.movies.slice();
+        
+        movies[i] = {
+            title: this.state.movies[i].title,
+            year: this.state.movies[i].year,
+            imdbID: this.state.movies[i].imdbID,
+            nominate: true,
+        }
 
-        this.setState({
-            nominations: nominations.concat([{
-                title: this.state.movies[i].Title,
-                year: this.state.movies[i].Year,
-            }])
+        nominations.push({
+            title: this.state.movies[i].title,
+            year: this.state.movies[i].year,
+            imdbID: this.state.movies[i].imdbID,
         })
 
-        //console.log(this.state.nominations)
+        this.setState({
+            movies: movies,
+            nominations: nominations
+        })
+
+        if(nominations.length === 6)
+            alert('Maximum nominations is 5')
+
     }
 
     handleDelete(index){
-        const nominations = this.state.nominations;
 
-        const delNominations = nominations.filter((nom, i) =>
+        const nominations = this.state.nominations;
+        const delNomination = nominations.filter((nom, i) =>
             i !== index
         )
 
-        this.setState({
-           nominations: delNominations })
+        const movies = this.state.movies.slice();
 
+        for (let i = 0; i < movies.length; i++){
+            if(nominations[index].imdbID === movies[i].imdbID)
+                movies[i].nominate = false
+        }
+       
+
+        this.setState({
+           movies: movies,
+           nominations: delNomination })
     }
 
     render(){
 
         const movies = this.state.movies.slice();
+
+        const results = this.state.movie ? `Results for "${this.state.movie}"` : null;
 
         return(
             <div className='mainBoard'>
@@ -89,17 +138,16 @@ export default class Main extends React.Component{
                 <div className='search'>
                     <div>Movie Title</div>
                         <form onSubmit={this.handleSubmit}>
-                            <input className='searchBox' type="text" value={this.state.value} onChange={this.handleChange} />
-                            <input type="submit" value="Submit" hidden/>
+                            <input className='searchBox' type="text" value={this.state.movie} onChange={this.handleChange} />
                         </form>
                 </div>
                 <div className='resultBody'>
                     <div className='results'>
-                        <div>Results for</div>
+                        <div>{results}</div>
                             <ul>
                                 <Results 
                                     movies={movies}
-                                    onClick={(i) => {this.handleClick(i)}}
+                                    onClick={(i) => {this.handleAdd(i)}}
                                 />
                             </ul>
                     </div>

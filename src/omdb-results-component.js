@@ -8,8 +8,13 @@ export default class Results extends React.Component{
         const movie = this.props.movies.map((eachMovie, i) => {
             return (
                 <li key={i}>
-                    {eachMovie.Title} ({eachMovie.Year})
-                    <button onClick={() => {this.props.onClick(i)}}>Nominee</button>                  
+                    {eachMovie.title} ({eachMovie.year}) |
+                    <button 
+                        onClick={() => {this.props.onClick(i)}}
+                        disabled={eachMovie.nominate}
+                    >
+                        Nominee
+                </button>                  
                 </li>
             )
         });

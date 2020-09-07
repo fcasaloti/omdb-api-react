@@ -8,7 +8,7 @@ function Nominations(props){
             if (i > 0) {
                 return(
                 <li key={i}>
-                    {movie.title} {movie.year}
+                    {movie.title} {movie.year} |
                     <button onClick={() => {props.onClick(i)}}>Remove</button>     
                 </li>
                 )

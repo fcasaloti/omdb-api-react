@@ -32,7 +32,7 @@ body{
 
 .resultBody{
     margin: 10px;
-    height: 250px;
+    height: 500px;
 }
 
 .results{
@@ -51,7 +51,7 @@ body{
     background-color: white;
 } 
 
-.button{
+button{
     background-color: #C0C0C0;
     border:none;
     color: white;
