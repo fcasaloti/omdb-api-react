@@ -7,7 +7,8 @@ OMDB is an application developed using React and get movie data from omdbapi.com
 To use this application you need to execute "npm install" and then "npm start".
 
 This application uses:
-*ReactJS
-*Bootstrap
-*Axios
+
+* ReactJS
+* Bootstrap
+* Axios
 
