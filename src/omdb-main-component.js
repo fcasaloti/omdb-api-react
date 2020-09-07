@@ -23,17 +23,6 @@ export default class Main extends React.Component{
 
     }
 
-    componentDidMount(){
-        this.getStorageData()
-    }
-
-    getStorageData(){
-
-
-    }
-
- 
-
     handleChange(event) {
         this.setState({
             movie: event.target.value
@@ -71,8 +60,6 @@ export default class Main extends React.Component{
             }
             )
         })
-
-        console.log(movieList[0])
 
         this.setState({
             movies: movieList.slice(1),
@@ -130,7 +117,7 @@ export default class Main extends React.Component{
 
         const movies = this.state.movies.slice();
 
-        const results = this.state.movie ? `Results for "${this.state.movie}"` : null;
+        const results = this.state.movie ? `"${this.state.movie}"` : null;
 
         return(
             <div className='mainBoard'>
@@ -143,7 +130,7 @@ export default class Main extends React.Component{
                 </div>
                 <div className='resultBody'>
                     <div className='results'>
-                        <div>{results}</div>
+                        <div>Results for {results}</div>
                             <ul>
                                 <Results 
                                     movies={movies}
@@ -152,7 +139,7 @@ export default class Main extends React.Component{
                             </ul>
                     </div>
                     <div className='nominations'>
-                        <div>
+                        <div>Nominations
                         <ul>
                         <Nominations 
                             nominations={this.state.nominations}

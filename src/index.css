@@ -32,7 +32,8 @@ body{
 
 .resultBody{
     margin: 10px;
-    height: 500px;
+    height: 300px;
+    line-height: 25px;
 }
 
 .results{
@@ -52,11 +53,11 @@ body{
 } 
 
 button{
-    background-color: #C0C0C0;
-    border:none;
-    color: white;
+    height: 14px;
+    font-size: 10px;
     text-align: center;
-    text-decoration: none;
     display: inline-block;
+    border:none;
+    text-decoration: none;
     cursor: pointer;
   }

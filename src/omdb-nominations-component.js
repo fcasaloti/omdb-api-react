@@ -13,6 +13,7 @@ function Nominations(props){
                 </li>
                 )
             }
+            return null;
         })
     return nominations;
 }
