@@ -4,6 +4,7 @@ import Results from './omdb-results-component';
 import Nominations from './omdb-nominations-component';
 import axios from 'axios';
 
+//default Main Class
 export default class Main extends React.Component{
     constructor(props){
         super(props);
@@ -23,10 +24,12 @@ export default class Main extends React.Component{
 
     }
 
+    //mount localstorage data for Nominations
     componentDidMount(){
         this.loadLocalData();
     }
 
+    //get nominations stored in local storage
     loadLocalData(){
         const temp = localStorage.getItem('nominations');
         const nominations = JSON.parse(temp)
@@ -36,17 +39,20 @@ export default class Main extends React.Component{
         })
     }
 
+    //setState from data of textbox
     handleChange(event) {
         this.setState({
             movie: event.target.value
         });
     }
     
+    //call function to get data from the API using state data
     handleSubmit(event) {
         this.getData();
         event.preventDefault();
     }
 
+    //get data from API
     getData(){
 
         const url = 'http://www.omdbapi.com/?apikey=ae471440&s=';
@@ -61,6 +67,7 @@ export default class Main extends React.Component{
             })
     }
 
+    //set new state using data from the api
     newState(movies){
 
         const movieList = movies.map(movie => {
@@ -79,6 +86,7 @@ export default class Main extends React.Component{
         })
     }
 
+    //handling Nominee Button events and adding movies to Nominations
     handleAdd(i){
         let nominations = this.state.nominations.slice();
         let movies = this.state.movies.slice();
@@ -107,6 +115,7 @@ export default class Main extends React.Component{
         localStorage.setItem('nominations',JSON.stringify(nominations));
     }
 
+    //handling Remove Button events to delete Nominated Movies
     handleDelete(index){
 
         const nominations = this.state.nominations;
@@ -128,6 +137,7 @@ export default class Main extends React.Component{
            nominations: delNomination })
     }
 
+    //Rendering
      render(){
 
         const movies = this.state.movies.slice();
@@ -135,32 +145,45 @@ export default class Main extends React.Component{
         const results = this.state.movie ? `"${this.state.movie}"` : null;
 
         return(
-            <div className='mainBoard'>
-                <div className='head'>The Shoppies</div>
-                <div className='search'>
-                    <div>Movie Title</div>
-                        <form onSubmit={this.handleSubmit}>
-                            <input className='searchBox' type="text" value={this.state.movie} onChange={this.handleChange} />
-                        </form>
-                </div>
-                <div className='resultBody'>
-                    <div className='results'>
-                        <div>Results for {results}</div>
-                            <ul>
-                                <Results 
-                                    movies={movies}
-                                    onClick={(i) => {this.handleAdd(i)}}
-                                />
-                            </ul>
+            <div className='container'>
+                <h3 className='mt-5'>The Shoppies</h3>
+                <div className='d-flex bg-white p-4'>
+                    <div className="col-12">
+                        <h6>Movie Title</h6>
+                            <form onSubmit={this.handleSubmit}>
+                                <input className='col-11' type="text" value={this.state.movie} onChange={this.handleChange} />
+                            </form>
                     </div>
-                    <div className='nominations'>
-                        <div>Nominations
-                        <ul>
-                        <Nominations 
-                            nominations={this.state.nominations}
-                            onClick={(i) => {this.handleDelete(i)}}
-                        />
-                        </ul>
+                </div>
+                <div className='d-flex bg-white mt-2'>
+                    <div className='col-6'>
+                        <div>
+                            <h6>
+                                Results for {results}
+                            </h6>
+                        </div>
+                            <table>
+                                <tbody>
+                                    <Results 
+                                        movies={movies}
+                                        onClick={(i) => {this.handleAdd(i)}}
+                                    />
+                                </tbody>
+                            </table>
+                    </div>
+                    <div className='col-6'>
+                        <div>
+                            <h6>
+                                Nominations
+                            </h6>
+                        <table>
+                            <tbody>
+                                <Nominations 
+                                nominations={this.state.nominations}
+                                onClick={(i) => {this.handleDelete(i)}}
+                                />
+                            </tbody>
+                        </table>
                         </div>
                     </div>
                 </div>
