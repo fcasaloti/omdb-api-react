@@ -57,7 +57,7 @@ export default class Main extends React.Component{
     //get data from API
     getData(){
 
-        const url = 'http://www.omdbapi.com/?apikey=ae471440&s=';
+        const url = 'https://www.omdbapi.com/?apikey=ae471440&s=';
 
         axios.get(url + this.state.movie)
             .then(response => {
