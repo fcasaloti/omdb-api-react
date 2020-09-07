@@ -67,6 +67,18 @@ export default class Main extends React.Component{
         //console.log(this.state.nominations)
     }
 
+    handleDelete(index){
+        const nominations = this.state.nominations;
+
+        const delNominations = nominations.filter((nom, i) =>
+            i !== index
+        )
+
+        this.setState({
+           nominations: delNominations })
+
+    }
+
     render(){
 
         const movies = this.state.movies.slice();
@@ -96,6 +108,7 @@ export default class Main extends React.Component{
                         <ul>
                         <Nominations 
                             nominations={this.state.nominations}
+                            onClick={(i) => {this.handleDelete(i)}}
                         />
                         </ul>
                         </div>

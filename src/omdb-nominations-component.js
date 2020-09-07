@@ -9,6 +9,7 @@ function Nominations(props){
                 return(
                 <li key={i}>
                     {movie.title} {movie.year}
+                    <button onClick={() => {props.onClick(i)}}>Remove</button>     
                 </li>
                 )
             }
