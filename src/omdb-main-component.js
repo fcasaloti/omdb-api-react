@@ -5,8 +5,8 @@ import Nominations from './omdb-nominations-component';
 import axios from 'axios';
 
 //default Main Class
-export default class Main extends React.Component{
-    constructor(props){
+export default class Main extends React.Component {
+    constructor(props) {
         super(props);
         this.state = {
             movie: '',
@@ -25,16 +25,16 @@ export default class Main extends React.Component{
     }
 
     //mount localstorage data for Nominations
-    componentDidMount(){
+    componentDidMount() {
         this.loadLocalData();
     }
 
     //get nominations stored in local storage
-    loadLocalData(){
+    loadLocalData() {
         const temp = localStorage.getItem('nominations');
         const nominations = JSON.parse(temp)
 
-        if (nominations !== null){
+        if (nominations !== null) {
             this.setState({
                 nominations: nominations,
             })
@@ -47,7 +47,7 @@ export default class Main extends React.Component{
             movie: event.target.value
         });
     }
-    
+
     //call function to get data from the API using state data
     handleSubmit(event) {
         this.getData();
@@ -55,7 +55,7 @@ export default class Main extends React.Component{
     }
 
     //get data from API
-    getData(){
+    getData() {
 
         const url = 'https://www.omdbapi.com/?apikey=ae471440&s=';
 
@@ -70,16 +70,16 @@ export default class Main extends React.Component{
     }
 
     //set new state using data from the api
-    newState(movies){
+    newState(movies) {
 
         const movieList = movies.map(movie => {
-            return(
-            {
-                title: movie.Title,
-                year: movie.Year,
-                imdbID: movie.imdbID,
-                nominate: false,
-            }
+            return (
+                {
+                    title: movie.Title,
+                    year: movie.Year,
+                    imdbID: movie.imdbID,
+                    nominate: false,
+                }
             )
         })
 
@@ -89,36 +89,37 @@ export default class Main extends React.Component{
     }
 
     //handling Nominee Button events and adding movies to Nominations
-    handleAdd(i){
+    handleAdd(i) {
         let nominations = this.state.nominations.slice();
         let movies = this.state.movies.slice();
-        
-        movies[i] = {
-            title: this.state.movies[i].title,
-            year: this.state.movies[i].year,
-            imdbID: this.state.movies[i].imdbID,
-            nominate: true,
+
+        if (nominations.length <= 5) {
+            movies[i] = {
+                title: this.state.movies[i].title,
+                year: this.state.movies[i].year,
+                imdbID: this.state.movies[i].imdbID,
+                nominate: true,
+            }
+
+            nominations.push({
+                title: this.state.movies[i].title,
+                year: this.state.movies[i].year,
+                imdbID: this.state.movies[i].imdbID,
+            })
+
+            this.setState({
+                movies: movies,
+                nominations: nominations
+            })
+
+            localStorage.setItem('nominations', JSON.stringify(nominations));
         }
-
-        nominations.push({
-            title: this.state.movies[i].title,
-            year: this.state.movies[i].year,
-            imdbID: this.state.movies[i].imdbID,
-        })
-
-        this.setState({
-            movies: movies,
-            nominations: nominations
-        })
-
-        if(nominations.length === 6)
+        else
             alert('Maximum nominations is 5')
-
-        localStorage.setItem('nominations',JSON.stringify(nominations));
     }
 
     //handling Remove Button events to delete Nominated Movies
-    handleDelete(index){
+    handleDelete(index) {
 
         const nominations = this.state.nominations;
         const delNomination = nominations.filter((nom, i) =>
@@ -127,35 +128,36 @@ export default class Main extends React.Component{
 
         const movies = this.state.movies.slice();
 
-        for (let i = 0; i < movies.length; i++){
-            if(nominations[index].imdbID === movies[i].imdbID)
+        for (let i = 0; i < movies.length; i++) {
+            if (nominations[index].imdbID === movies[i].imdbID)
                 movies[i].nominate = false
         }
-       
-        localStorage.setItem('nominations',JSON.stringify(delNomination));
+
+        localStorage.setItem('nominations', JSON.stringify(delNomination));
 
         this.setState({
-           movies: movies,
-           nominations: delNomination })
+            movies: movies,
+            nominations: delNomination
+        })
     }
 
 
     //Rendering
-     render(){
+    render() {
 
         const movies = this.state.movies.slice();
 
         const results = this.state.movie ? `"${this.state.movie}"` : null;
 
-        return(
+        return (
             <div className='container'>
                 <h3 className='mt-5'>The Shoppies</h3>
                 <div className='d-flex bg-white p-4'>
                     <div className="col-12">
                         <h6>Movie Title</h6>
-                            <form onSubmit={this.handleSubmit}>
-                                <input className='col-11' type="text" value={this.state.movie} onChange={this.handleChange} />
-                            </form>
+                        <form onSubmit={this.handleSubmit}>
+                            <input className='col-11' type="text" value={this.state.movie} onChange={this.handleChange} />
+                        </form>
                     </div>
                 </div>
                 <div className='d-flex bg-white mt-2'>
@@ -165,28 +167,28 @@ export default class Main extends React.Component{
                                 Results for {results}
                             </h6>
                         </div>
-                            <table>
-                                <tbody>
-                                    <Results 
-                                        movies={movies}
-                                        onClick={(i) => {this.handleAdd(i)}}
-                                    />
-                                </tbody>
-                            </table>
+                        <table>
+                            <tbody>
+                                <Results
+                                    movies={movies}
+                                    onClick={(i) => { this.handleAdd(i) }}
+                                />
+                            </tbody>
+                        </table>
                     </div>
                     <div className='col-6'>
                         <div>
                             <h6>
                                 Nominations
                             </h6>
-                        <table>
-                            <tbody>
-                                <Nominations 
-                                nominations={this.state.nominations}
-                                onClick={(i) => {this.handleDelete(i)}}
-                                />
-                            </tbody>
-                        </table>
+                            <table>
+                                <tbody>
+                                    <Nominations
+                                        nominations={this.state.nominations}
+                                        onClick={(i) => { this.handleDelete(i) }}
+                                    />
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
