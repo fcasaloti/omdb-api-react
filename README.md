@@ -1,6 +1,6 @@
 # omdb-api
 
-OMDB is an application developed using React and get movie data from omdbapi.com. Users can search for a movie in a textbox and the application search for the name using an API. All the results are displayed in a table. Users can Nominee movies that are copied from the results table to the Nominations table. All data in the Nominations table are persistent, which means that even if the user closes the browser, it will keep the Nominations list unless the user removes it using a provided button.
+OMDB is an application developed using React that gets movie data from omdbapi.com. Users can search for a movie using a textbox and the application fetch data using API. All the results are displayed in a table. Users can Nominee movies that are copied from the results table to the Nominations table. All data in the Nominations table are persistent, which means that even if the user closes the browser, it will keep the Nominations list unless the user removes it using a provided button.
 
 # Using this application
 
