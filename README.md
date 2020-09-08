@@ -13,7 +13,7 @@ OMDB is an application developed using React that gets movie data from omdbapi.c
 
 You can access the application accessing https://fcasaloti.github.io/omdb-api-react/.
 
-If you want to access it locally, you need to execute "npm install" and then "npm start".
+If you want to access it locally, you can download the folder, execute "npm install" and then "npm start".
 
 This application uses:
 
