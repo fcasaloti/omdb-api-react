@@ -9,7 +9,7 @@ function Nominations(props){
             if (i > 0) {
                 return(
                 <tr key={i}>
-                    <td>{movie.title} {movie.year}</td>
+                    <td>&#8226; {movie.title} {movie.year}</td>
                     <td><button onClick={() => {props.onClick(i)}}>Remove</button></td>     
                 </tr>
                 )

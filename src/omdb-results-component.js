@@ -10,7 +10,7 @@ export default class Results extends React.Component{
             return (
                 <tr key={i}>
                     <td>
-                        {eachMovie.title} ({eachMovie.year})
+                        &#8226; {eachMovie.title} ({eachMovie.year})
                     </td>   
                     <td>
                         <button 
