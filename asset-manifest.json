@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/omdb-api-react/static/css/main.ccb18b81.chunk.css",
-    "main.js": "/omdb-api-react/static/js/main.0c7d0123.chunk.js",
-    "main.js.map": "/omdb-api-react/static/js/main.0c7d0123.chunk.js.map",
+    "main.js": "/omdb-api-react/static/js/main.eb60222a.chunk.js",
+    "main.js.map": "/omdb-api-react/static/js/main.eb60222a.chunk.js.map",
     "runtime-main.js": "/omdb-api-react/static/js/runtime-main.800d237f.js",
     "runtime-main.js.map": "/omdb-api-react/static/js/runtime-main.800d237f.js.map",
     "static/css/2.8aa5a7f8.chunk.css": "/omdb-api-react/static/css/2.8aa5a7f8.chunk.css",
     "static/js/2.3efc0c61.chunk.js": "/omdb-api-react/static/js/2.3efc0c61.chunk.js",
     "static/js/2.3efc0c61.chunk.js.map": "/omdb-api-react/static/js/2.3efc0c61.chunk.js.map",
     "index.html": "/omdb-api-react/index.html",
-    "precache-manifest.209dc35bdbc7063b390b8f1caa5f7e66.js": "/omdb-api-react/precache-manifest.209dc35bdbc7063b390b8f1caa5f7e66.js",
+    "precache-manifest.618684afea5ebbefab3556507aa39847.js": "/omdb-api-react/precache-manifest.618684afea5ebbefab3556507aa39847.js",
     "service-worker.js": "/omdb-api-react/service-worker.js",
     "static/css/2.8aa5a7f8.chunk.css.map": "/omdb-api-react/static/css/2.8aa5a7f8.chunk.css.map",
     "static/css/main.ccb18b81.chunk.css.map": "/omdb-api-react/static/css/main.ccb18b81.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.8aa5a7f8.chunk.css",
     "static/js/2.3efc0c61.chunk.js",
     "static/css/main.ccb18b81.chunk.css",
-    "static/js/main.0c7d0123.chunk.js"
+    "static/js/main.eb60222a.chunk.js"
   ]
 }
