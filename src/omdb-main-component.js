@@ -167,7 +167,7 @@ export default class Main extends React.Component {
                                 Results for {results}
                             </h6>
                         </div>
-                        <table>
+                        <table className="table table-hover">
                             <tbody>
                                 <Results
                                     movies={movies}
@@ -181,7 +181,7 @@ export default class Main extends React.Component {
                             <h6>
                                 Nominations
                             </h6>
-                            <table>
+                            <table className="table table-hover">
                                 <tbody>
                                     <Nominations
                                         nominations={this.state.nominations}
