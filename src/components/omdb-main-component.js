@@ -144,7 +144,7 @@ export default class Main extends React.Component {
       <div className="container m-4">
         <div className="row">
           <div className="col m-2">
-            <h3>The Shoppies</h3>
+            <h3>Movie Finder - OMDBAPI</h3>
           </div>
         </div>
         <div className="input-box bg-white m-2 p-4">
